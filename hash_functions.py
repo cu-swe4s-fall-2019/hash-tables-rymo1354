@@ -1,6 +1,7 @@
 import sys
 import os
 import argparse
+import collections.abc
 
 
 def check_hashable(key):
@@ -16,13 +17,11 @@ def check_hashable(key):
         Otherwise, returns False
     """
 
-    try:
-        key = str(key)
+    if isinstance(key, collections.Hashable) == True:
         return True
-    except ValueError:
-        print("Unhashable type as key")
-        return False
 
+    else:
+        return False
 
 def check_integer(N):
     """
