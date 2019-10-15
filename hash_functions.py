@@ -154,6 +154,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if check_integer(args.table_size) is not True:
+        print('Invalid integer')
         sys.exit(1)
 
     if (os.path.exists(args.input)):
