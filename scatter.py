@@ -7,6 +7,18 @@ matplotlib.use('Agg')
 
 
 def check_path(path):
+    """
+    Determines if passed path exists and has read access
+    Arguments
+    _________
+    path: string of the path of interest
+
+    Returns
+    _______
+    True : if path exists and is readable
+        Otherwise, returns False
+    """
+
     if os.path.isfile(path) and os.access(path, os.R_OK):
         return True
     else:
