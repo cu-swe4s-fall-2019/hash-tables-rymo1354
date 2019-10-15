@@ -1,8 +1,17 @@
+import os
 import matplotlib.pyplot as plt
 import sys
 import argparse
 import matplotlib
 matplotlib.use('Agg')
+
+
+def check_path(path):
+    if os.path.isfile(path) and os.access(path, os.R_OK):
+        return True
+    else:
+        return False
+
 
 if __name__ == '__main__':
     # adding arguments
@@ -19,18 +28,33 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    if check_path(args.out_file) is False:
+        print('File does not exist or is not accessible')
+        sys.exit(1)
+
     X = []
     Y = []
     i = 0
     for line in sys.stdin:
         A = line.rstrip().split()
-        if len(A) == 2:
-            X.append(float(A[0]))
-            Y.append(float(A[1]))
+        if len(A) >= 2:
+            try:
+                X.append(float(A[0]))
+                Y.append(float(A[1]))
+            except ValueError:
+                print(str(A[0]) + ' not valid integer')
+                continue
         elif len(A) == 1:
-            X.append(float(i))
-            Y.append(float(A[0]))
-            i += 1
+            try:
+                X.append(float(i))
+                Y.append(float(A[0]))
+                i += 1
+            except ValueError:
+                print(str(A[0]) + ' not valid integer')
+                continue
+        else:
+            print('Empty file')
+            sys.exit(1)
 
     width = 3
     height = 3
