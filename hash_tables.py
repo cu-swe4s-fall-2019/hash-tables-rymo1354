@@ -183,6 +183,12 @@ if __name__ == '__main__':
         print('Cannot find input file')
         sys.exit(1)
 
+    ht = None
+    valid_collisions = ['linear', 'chain']
+    if args.collision_strategy not in valid_collisions:
+        print('Hash algorithm not supported at this time')
+        sys.exit(1)
+
     if args.hash_method == 'ascii':
         if args.collision_strategy == 'linear':
             ht = LinearProbe(args.table_size, hash_functions.h_ascii)
