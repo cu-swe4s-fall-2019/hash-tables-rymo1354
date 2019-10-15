@@ -17,11 +17,12 @@ def check_hashable(key):
         Otherwise, returns False
     """
 
-    if isinstance(key, collections.Hashable) == True:
+    if isinstance(key, collections.Hashable) is True:
         return True
 
     else:
         return False
+
 
 def check_integer(N):
     """
