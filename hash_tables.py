@@ -179,32 +179,32 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if not os.path.exists(data_file_name):
+    if not os.path.exists(args.input):
         print('Cannot find input file')
         sys.exit(1)
 
-    if hash_alg == 'ascii':
-        if collision_strategy == 'linear':
+    if args.hash_method == 'ascii':
+        if args.collision_strategy == 'linear':
             ht = LinearProbe(args.table_size, hash_functions.h_ascii)
-        elif collision_strategy == 'chain':
+        elif args.collision_strategy == 'chain':
             ht = ChainedHash(args.table_size, hash_functions.h_ascii)
 
-    elif hash_alg == 'weighted':
-        if collision_strategy == 'linear':
+    elif args.hash_method == 'weighted':
+        if args.collision_strategy == 'linear':
             ht = LinearProbe(args.table_size, hash_functions.h_weighted)
-        elif collision_strategy == 'chain':
+        elif args.collision_strategy == 'chain':
             ht = ChainedHash(args.table_size, hash_functions.h_weighted)
 
-    elif hash_alg == 'binning':
-        if collision_strategy == 'linear':
+    elif args.hash_method == 'binning':
+        if args.collision_strategy == 'linear':
             ht = LinearProbe(args.table_size, hash_functions.h_binning)
-        elif collision_strategy == 'chain':
+        elif args.collision_strategy == 'chain':
             ht = ChainedHash(args.table_size, hash_functions.h_binning)
 
-    elif hash_alg == 'rolling':
-        if collision_strategy == 'linear':
+    elif args.hash_method == 'rolling':
+        if args.collision_strategy == 'linear':
             ht = LinearProbe(args.table_size, hash_functions.h_rolling)
-        elif collision_strategy == 'chain':
+        elif args.collision_strategy == 'chain':
             ht = ChainedHash(args.table_size, hash_functions.h_rolling)
 
     else:
@@ -213,13 +213,13 @@ if __name__ == '__main__':
 
     V = []
 
-    for line in open(data_file_name):
-        reservoir_sampling(line, keys_to_search, V)
+    for line in open(args.input):
+        reservoir_sampling(line, args.times_to_search, V)
         t0 = time.time()
         ht.add(line, line)
         t1 = time.time()
         print('add', ht.M/ht.N, t1 - t0)
-        if ht.M == keys_to_add:
+        if ht.M == args.keys_to_add:
             break
 
     for value in V:
