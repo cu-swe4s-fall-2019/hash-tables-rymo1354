@@ -17,11 +17,12 @@ def check_hashable(key):
         Otherwise, returns False
     """
 
-    if isinstance(key, collections.Hashable) == True:
+    if isinstance(key, collections.Hashable) is True:
         return True
 
     else:
         return False
+
 
 def check_integer(N):
     """
@@ -153,6 +154,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if check_integer(args.table_size) is not True:
+        print('Invalid integer')
         sys.exit(1)
 
     if (os.path.exists(args.input)):
