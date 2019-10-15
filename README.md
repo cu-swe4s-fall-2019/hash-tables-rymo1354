@@ -3,6 +3,7 @@ Testing different hash functions and search methods.
 Note: random and non-random strings used for hashing. 
 
 ## Travis Status
+![](https://travis-ci.com/cu-swe4s-fall-2019/hash-tables-rymo1354.svg?branch=master)
 
 ## Installation
 To use this package, you should have [Python3](https://www.python.org/download/releases/3.6/) in your environment. You should also have matplotlib installed.
