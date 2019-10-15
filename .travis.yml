@@ -14,5 +14,5 @@ before_install:
 script:
     - python test_hash_functions.py
     - python test_hash_tables.py
-    - python test_hash_scatter.py
+    - python test_scatter.py
     - bash functional_tests.sh
